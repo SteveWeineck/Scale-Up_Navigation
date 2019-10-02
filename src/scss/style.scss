@@ -1,0 +1,306 @@
+/*delete*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700,800&display=swap');
+
+$navigation-scroll-color: #242424;
+$hover: #22aadf;
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    background: #e94141;
+}
+
+body{
+    background: -webkit-linear-gradient(left , rgb(255, 111, 118) 11% , rgb(255, 51, 62) 87%);
+    font-family: 'Poppins', sans-serif;
+    height: 200vh; 
+}
+
+.they-see-scrolling-container{
+    width: 100%;
+    overflow: hidden;
+    .they-see-scrolling{
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        top: 90vh;
+        background: white;
+    }
+}
+/*delete ende*/
+
+body.stop-transitions * {
+    transition: none !important;
+}
+
+.topBar-container{
+    display: flex;
+    height: 76px;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    transition: background-color .3s ease;
+}
+
+.topBar-container-scrolling{
+    background: $navigation-scroll-color;
+}
+
+.logo-container{
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    img{
+        height: 100%;
+        width: auto;
+        object-fit: scale-down;
+        object-position: left;
+        padding: 10px 20px;
+        box-sizing: border-box;
+    }
+}
+
+.nav-wrapper{
+    height: 100%;
+}
+
+.navigation-container{
+    flex-grow: 1;
+    ul{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+    }
+
+    li{
+        list-style-type: none;
+        flex: 0 1 auto;
+        
+        
+        &:last-of-type{
+            flex-grow: 1;
+            position: relative;
+            display: inline-flex;
+            justify-content: flex-end;  
+            align-items: center;
+            a{
+                height: 50%;
+                background: $navigation-scroll-color;
+                border: 3px solid $navigation-scroll-color;
+                margin-right: 15px;
+                &:hover{
+                    background: #fff;
+                    color: $navigation-scroll-color;
+                }
+            }
+        }
+        
+    } 
+}
+
+.topBar-container-scrolling{
+    li:last-of-type{
+        a{
+            background: #fff;
+            border: 3px solid #fff;
+            color: black;
+            &:hover{
+                background: $navigation-scroll-color;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.navigation-container a, .s-nav a{
+    color: white;
+    text-decoration: none;
+    padding: 0 20px;
+    color: white;
+    text-decoration: none;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    &:hover{
+        color: $hover;
+        cursor: pointer;
+    }
+}
+
+.burger-menu-trigger{
+    display: none;
+}
+
+@media (max-width: 1350px){
+    .topBar-container{
+        background: none;
+    }
+
+    .nav-wrapper{
+        transform: translateY(-100%);
+        transition: all .3s ease;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        background: #252525;
+        height: auto;
+        
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding:40px 0;
+            padding-bottom:4px;
+            li {
+                width: 100%;
+                text-align: center;
+                a{
+                    height:40px;
+                    font-size: 3vh;
+                }
+            }
+        }
+    }
+    .navigation-container li:last-of-type{
+        justify-content: inherit;
+        a{
+            background: #fff;
+            border: 3px solid #fff;
+            color: black;
+            margin: 0;
+            text-align: center;
+            height:100%;
+            background: white;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 2px;
+            &:hover{
+                background: #fff;
+                color: $hover;
+            }
+        }
+    }
+
+
+
+    .navigation-container.mobile-nav-active nav.nav-wrapper {
+        transform: translateY(0px);
+    }
+
+    .mobile-nav-active a{
+        position: relative;
+        opacity: 0;
+        opacity: 0;
+        transform: scale(1.2) translateY(-5%);
+    }
+
+    .mobile-nav-active a{
+        animation: navi .3s forwards;
+        @keyframes navi{
+            0% {
+                opacity: 0;
+                transform: scale(1.2) translateY(-5%);
+                }
+            100% {
+                opacity: 1;
+                transform: scale(1.0) translateY(0);
+                } 
+            }
+    }
+    @for $i from 1 through 10 {
+        .mobile-nav-active li:nth-child(#{$i}n) a {
+            animation-delay: #{$i * 0.05}s;
+        }
+    }
+
+    .burger-menu-trigger{
+        display: block;
+        height: 60px;
+        width: 60px;
+        background: $navigation-scroll-color;
+        position: fixed;
+        right: 8px;
+        top: 8px;
+        z-index: 2;
+        &:hover{
+            cursor: pointer;
+        }
+        .burger-line{
+            width: 60%;
+            height: 2px;
+            background: white;
+            margin: auto;
+            margin-top: 10px;
+            position: relative;
+            top: 7px;
+            transition: all .2s ease;
+        }
+    }
+
+    .navigation-container.mobile-nav-active{ 
+        .burger-line2{
+            transform: translateX(200%);
+        }
+
+        .burger-line1{
+            transform: rotate(45deg);
+            top: 19px;
+        }
+
+        .burger-line3{
+            transform: rotate(-45deg);
+            bottom: 5px;
+            top: auto;
+        }
+    }
+
+    .s-nav{
+        position: relative;
+        right: 60px;
+    }
+
+}
+
+@media (max-width: 900px){
+    .navigation-container.mobile-nav-active nav.nav-wrapper {
+        ul {
+            padding-top: 95px;
+        }
+    }
+}
+
+@media (max-width: 500px){
+    .logo-container{
+        height: 70%;
+        align-self: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-height: 500px){
+    .nav-wrapper ul li a{
+        height: 30px;
+    }
+
+    .nav-wrapper ul li a{
+        font-size: 24px;
+    }
+    
+}
+
+
+@media (min-height: 500px){
+    
+}
